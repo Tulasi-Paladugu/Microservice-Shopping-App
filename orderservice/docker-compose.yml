@@ -1,0 +1,13 @@
+services:
+ mysql:
+  image: mysql:8.3.0
+  container_name: mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: password
+   #MYSQL_DATABASE: order_service .. this mapping will create the database collection at start of container
+   #there is another way of doing it , by writng scripts in separate fiel and mapping it with volumes written below
+  ports:
+   - "3306:3306"
+  volumes:
+   - ./mysql:/var/lib/mysql
+   - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
